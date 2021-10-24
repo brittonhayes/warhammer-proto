@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 
-	warhammerv1 "github.com/brittonhayes/warhammer/proto/gen/proto/go/warhammer/v1"
+	warhammerv1 "github.com/brittonhayes/warhammer/proto/gen/warhammer/sigmar/v1"
 )
 
 type armyServer struct {

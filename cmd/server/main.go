@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/brittonhayes/warhammer/internal/server"
+	server "github.com/brittonhayes/warhammer/internal/service"
 	"github.com/joho/godotenv"
 )
 

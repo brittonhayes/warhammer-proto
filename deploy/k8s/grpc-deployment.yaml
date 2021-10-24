@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc
+  labels:
+    role: grpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: grpc
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        role: grpc
+    spec:
+      containers:
+        - image: grpc
+          name: grpc
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,11 @@
+version: "2"
+services:
+  grpc:
+    build: .
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres

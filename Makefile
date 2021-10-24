@@ -2,14 +2,19 @@
 lint:
 	golangci-lint run ./...
 
-.PHONY: build
-build:
-	docker build . -t brittonhayes/warhammer:latest
-
 .PHONY: deploy
 deploy:
 	railway up
 
-.PHONY: generate
-generate:
-	cd proto && buf generate
+.PHONY: proto
+proto:
+	@echo "Generating code from protobuf schemas"
+	buf generate --template proto/buf.gen.yaml proto
+
+.PHONY: k8s
+k8s:
+	@echo "Building kubernetes manifests"
+	kustomize build deploy/k8s/ -o deploy/warhammer.yaml
+
+.PHONY: build
+build: proto k8s

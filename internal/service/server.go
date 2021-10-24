@@ -7,7 +7,7 @@ import (
 	// and the gen/proto/go output location in the buf.gen.yaml.
 
 	"github.com/brittonhayes/warhammer/internal/logger"
-	warhammerv1 "github.com/brittonhayes/warhammer/proto/gen/proto/go/warhammer/v1"
+	warhammerv1 "github.com/brittonhayes/warhammer/proto/gen/go/warhammer/v1"
 	"github.com/diamondburned/arikawa/v3/session"
 	"google.golang.org/grpc"
 )

@@ -1,0 +1,113 @@
+apiVersion: v1
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_PASSWORD: test123
+  POSTGRES_USER: admin
+kind: ConfigMap
+metadata:
+  labels:
+    app: db
+  name: warhammerdb-config
+  namespace: warhammer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: grpc
+  name: warhammergrpc
+  namespace: warhammer
+spec:
+  ports:
+    - name: "3000"
+      port: 3000
+      targetPort: 3000
+  selector:
+    role: grpc
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    app: db
+  name: warhammerdb-pv-volume
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 5Gi
+  hostPath:
+    path: /mnt/data
+  storageClassName: manual
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: db
+  name: warhammerdb-pv-claim
+  namespace: warhammer
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: manual
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: db
+  name: warhammerdb
+  namespace: warhammer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          image: postgres
+          name: db
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: grpc
+  name: warhammergrpc
+  namespace: warhammer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: grpc
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        role: grpc
+    spec:
+      containers:
+        - image: grpc
+          name: grpc
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}

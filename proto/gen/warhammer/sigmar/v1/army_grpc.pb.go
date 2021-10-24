@@ -31,7 +31,7 @@ func NewArmyServiceClient(cc grpc.ClientConnInterface) ArmyServiceClient {
 
 func (c *armyServiceClient) CreateUnit(ctx context.Context, in *CreateUnitRequest, opts ...grpc.CallOption) (*CreateUnitResponse, error) {
 	out := new(CreateUnitResponse)
-	err := c.cc.Invoke(ctx, "/warhammer.v1.ArmyService/CreateUnit", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/warhammer.sigmar.v1.ArmyService/CreateUnit", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func _ArmyService_CreateUnit_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/warhammer.v1.ArmyService/CreateUnit",
+		FullMethod: "/warhammer.sigmar.v1.ArmyService/CreateUnit",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArmyServiceServer).CreateUnit(ctx, req.(*CreateUnitRequest))
@@ -86,7 +86,7 @@ func _ArmyService_CreateUnit_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ArmyService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "warhammer.v1.ArmyService",
+	ServiceName: "warhammer.sigmar.v1.ArmyService",
 	HandlerType: (*ArmyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -95,5 +95,5 @@ var ArmyService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "warhammer/v1/army.proto",
+	Metadata: "warhammer/sigmar/v1/army.proto",
 }

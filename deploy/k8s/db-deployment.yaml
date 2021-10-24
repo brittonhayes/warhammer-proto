@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          image: postgres
+          name: db
+          resources: {}
+      restartPolicy: Always
+status: {}

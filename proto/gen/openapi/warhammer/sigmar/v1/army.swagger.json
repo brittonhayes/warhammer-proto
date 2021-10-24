@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "warhammer/v1/army.proto",
+    "title": "warhammer/sigmar/v1/army.proto",
     "version": "version not set"
   },
   "tags": [

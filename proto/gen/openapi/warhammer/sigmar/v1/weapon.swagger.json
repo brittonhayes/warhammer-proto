@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "warhammer/v1/weapon.proto",
+    "title": "warhammer/sigmar/v1/weapon.proto",
     "version": "version not set"
   },
   "consumes": [
