@@ -19,9 +19,9 @@ metadata:
   namespace: warhammer
 spec:
   ports:
-    - name: "3000"
-      port: 3000
-      targetPort: 3000
+  - name: "3000"
+    port: 3000
+    targetPort: 3000
   selector:
     role: grpc
 status:
@@ -35,7 +35,7 @@ metadata:
   name: warhammerdb-pv-volume
 spec:
   accessModes:
-    - ReadWriteMany
+  - ReadWriteMany
   capacity:
     storage: 5Gi
   hostPath:
@@ -51,7 +51,7 @@ metadata:
   namespace: warhammer
 spec:
   accessModes:
-    - ReadWriteMany
+  - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
@@ -76,12 +76,12 @@ spec:
         app: db
     spec:
       containers:
-        - env:
-            - name: POSTGRES_PASSWORD
-              value: postgres
-          image: postgres
-          name: db
-          resources: {}
+      - env:
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        image: postgres
+        name: db
+        resources: {}
       restartPolicy: Always
 status: {}
 ---
@@ -104,10 +104,10 @@ spec:
         role: grpc
     spec:
       containers:
-        - image: grpc
-          name: grpc
-          ports:
-            - containerPort: 3000
-          resources: {}
+      - image: grpc
+        name: grpc
+        ports:
+        - containerPort: 3000
+        resources: {}
       restartPolicy: Always
 status: {}

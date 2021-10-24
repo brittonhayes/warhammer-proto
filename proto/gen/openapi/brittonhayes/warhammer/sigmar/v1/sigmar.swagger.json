@@ -1,0 +1,248 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "brittonhayes/warhammer/sigmar/v1/sigmar.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "SigmarService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/sigmar/unit": {
+      "get": {
+        "operationId": "SigmarService_GetUnit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUnitResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "SigmarService"
+        ]
+      },
+      "post": {
+        "operationId": "SigmarService_CreateUnit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateUnitResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateUnitRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SigmarService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "UnitAbility": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "UnitDamage": {
+      "type": "object",
+      "properties": {
+        "entry": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreateUnitRequest": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "$ref": "#/definitions/v1Unit"
+        }
+      }
+    },
+    "v1CreateUnitResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetUnitResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v1Unit"
+        }
+      }
+    },
+    "v1Unit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "move": {
+          "type": "string"
+        },
+        "save": {
+          "type": "string"
+        },
+        "bravery": {
+          "type": "string"
+        },
+        "wounds": {
+          "type": "string"
+        },
+        "abilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UnitAbility"
+          }
+        },
+        "damageTable": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UnitDamage"
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "weapons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Weapon"
+          }
+        }
+      }
+    },
+    "v1Weapon": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/v1WeaponType"
+        },
+        "name": {
+          "type": "string"
+        },
+        "range": {
+          "type": "string"
+        },
+        "attacks": {
+          "type": "string"
+        },
+        "toHit": {
+          "type": "string"
+        },
+        "toWound": {
+          "type": "string"
+        },
+        "rend": {
+          "type": "string"
+        },
+        "damage": {
+          "type": "string"
+        }
+      }
+    },
+    "v1WeaponType": {
+      "type": "string",
+      "enum": [
+        "WEAPON_TYPE_NONE",
+        "WEAPON_TYPE_MELEE",
+        "WEAPON_TYPE_RANGED"
+      ],
+      "default": "WEAPON_TYPE_NONE"
+    }
+  }
+}

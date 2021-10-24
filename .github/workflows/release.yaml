@@ -1,3 +1,4 @@
+name: Release Proto
 on: release
 jobs:
   validate-and-push-protos:

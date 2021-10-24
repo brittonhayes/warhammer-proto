@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package brittonhayes.warhammer.sigmar.v1;
+
+option java_package = "com.brittonhayes.warhammer.sigmar";
+option go_package = "github.com/brittonhayes/warhammer/proto/gen/brittonhayes/warhammer/sigmar/v1;sigmarv1";
+
+import "google/api/annotations.proto";
+
+
+service SigmarService {
+    rpc CreateUnit (CreateUnitRequest) returns (CreateUnitResponse) {
+        option (google.api.http) = {
+            post: "/v1/sigmar/unit"
+            body: "*"
+        };
+    };
+    rpc GetUnit (GetUnitRequest) returns (GetUnitResponse) {
+        option (google.api.http) = {
+            get: "/v1/sigmar/unit"
+        };
+    };
+}
+
+message CreateUnitRequest {
+    Unit unit = 1;
+}
+
+message CreateUnitResponse {
+    int32 status = 1;
+    string message = 2;
+}
+
+message GetUnitRequest {
+    int64 id = 1;
+}
+
+message GetUnitResponse {
+    Unit data = 1;
+}
+
+message Army {
+    string army = 1;
+    repeated Unit units = 2;
+}
+
+message Unit {
+    string id = 1;
+    string name = 2;
+    string size = 3;
+    string move = 4;
+    string save = 5;
+    string bravery = 6; 
+    string wounds = 7;
+   
+    message Ability {
+        string name = 1;
+        string description = 2;
+    }
+
+    message Damage {
+        map<string,string> entry = 1; 
+    }
+    
+    repeated Ability abilities = 8;
+    repeated Damage damage_table = 9;
+    repeated string keywords = 10;
+    repeated Weapon weapons = 11;
+}
+
+enum WeaponType {
+    WEAPON_TYPE_NONE = 0;
+    WEAPON_TYPE_MELEE = 1;
+    WEAPON_TYPE_RANGED = 2;
+}
+
+message Weapon {
+    WeaponType type = 1;
+    string name = 2;
+    string range = 3;
+    string attacks = 4;
+    string to_hit = 5; 
+    string to_wound = 6;
+    string rend = 7;
+    string damage = 8; 
+}
