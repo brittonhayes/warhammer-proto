@@ -1,5 +1,7 @@
 name: Release Proto
-on: release
+on:
+  release:
+    types: [published]
 jobs:
   validate-and-push-protos:
     runs-on: ubuntu-latest
