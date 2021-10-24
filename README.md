@@ -4,7 +4,7 @@
 
 ## Intro ℹ️
 
-> [Skip to Quick Start](#Quick-Start)
+> [Skip to Quick Start](https://github.com/brittonhayes/warhammer#quick-start-)
 
 What is this?
 
