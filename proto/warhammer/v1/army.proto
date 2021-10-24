@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package warhammer.v1;
+
+option java_package = "com.brittonhayes.warhammer";
+option go_package = "github.com/brittonhayes/warhammer/proto/gen/warhammer/v1;warhammerv1";
+
+
+message Army {
+    string army = 1;
+    repeated Unit units = 2;
+}
+
+message Unit {
+    string name = 1;
+    string size = 2;
+    string move = 3;
+    string save = 4;
+    string bravery = 5; 
+    string wounds = 6;
+   
+    message Ability {
+        string name = 1;
+        string description = 2;
+    }
+
+    message Damage {
+        map<string,string> entry = 1; 
+    }
+    
+    repeated Ability abilities = 7;
+    repeated Damage damage_table = 8;
+    repeated string keywords = 9;
+}
+
+message CreateUnitRequest {
+    Unit unit = 1;
+}
+
+message CreateUnitResponse {
+    int32 status = 1;
+    string message = 2;
+}
+
+service ArmyService {
+    rpc CreateUnit (CreateUnitRequest) returns (CreateUnitResponse);
+}
