@@ -37,7 +37,7 @@ The Warhammer Age of Sigmar API provides support for protocol buffers via gRPC a
 
 ↔️ Protobuf - [View or download on buf.build](https://buf.build/brittonhayes/warhammer/docs)
 
-🌐 Open API - [View Open API 3 Specification](./proto/gen/openapi/warhammer/)
+🌐 Open API - [View Open API 3 Specification](./proto/gen/openapi/brittonhayes/warhammer/sigmar/v1)
 
 
 ## Deploy 🚀
