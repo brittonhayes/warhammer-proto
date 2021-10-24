@@ -7,7 +7,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: db
-  name: warhammerdb-config
+  name: warhammer-db-config
   namespace: warhammer
 ---
 apiVersion: v1
@@ -15,13 +15,13 @@ kind: Service
 metadata:
   labels:
     role: grpc
-  name: warhammergrpc
+  name: warhammer-grpc
   namespace: warhammer
 spec:
   ports:
-  - name: "3000"
-    port: 3000
-    targetPort: 3000
+    - name: "3000"
+      port: 3000
+      targetPort: 3000
   selector:
     role: grpc
 status:
@@ -32,10 +32,10 @@ kind: PersistentVolume
 metadata:
   labels:
     app: db
-  name: warhammerdb-pv-volume
+  name: warhammer-db-pv-volume
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   capacity:
     storage: 5Gi
   hostPath:
@@ -47,11 +47,11 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     app: db
-  name: warhammerdb-pv-claim
+  name: warhammer-db-pv-claim
   namespace: warhammer
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
@@ -62,7 +62,7 @@ kind: Deployment
 metadata:
   labels:
     app: db
-  name: warhammerdb
+  name: warhammer-db
   namespace: warhammer
 spec:
   replicas: 1
@@ -76,12 +76,12 @@ spec:
         app: db
     spec:
       containers:
-      - env:
-        - name: POSTGRES_PASSWORD
-          value: postgres
-        image: postgres
-        name: db
-        resources: {}
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          image: postgres
+          name: db
+          resources: {}
       restartPolicy: Always
 status: {}
 ---
@@ -90,7 +90,7 @@ kind: Deployment
 metadata:
   labels:
     role: grpc
-  name: warhammergrpc
+  name: warhammer-grpc
   namespace: warhammer
 spec:
   replicas: 1
@@ -104,10 +104,10 @@ spec:
         role: grpc
     spec:
       containers:
-      - image: grpc
-        name: grpc
-        ports:
-        - containerPort: 3000
-        resources: {}
+        - image: grpc
+          name: grpc
+          ports:
+            - containerPort: 3000
+          resources: {}
       restartPolicy: Always
 status: {}
