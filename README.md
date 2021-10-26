@@ -16,7 +16,7 @@ Why?
 
 Most of the knowledge base for Warhammer Age of Sigmar relies on users digging through official PDF manuals. This makes it hard to efficiently find knowledge about the Warhammer universe for creators and players.
 
-The goal of this repository is to empower the Warhammer community to make their own game companion tools in whatever language they please.
+The goal of this repository is to empower the Warhammer community to make their own game companion tools in whatever language they like.
 
 ## Quick Start ✨
 
