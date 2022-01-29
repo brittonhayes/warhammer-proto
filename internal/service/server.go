@@ -21,8 +21,7 @@ type Server struct {
 
 func New(host string) *Server {
 	return &Server{
-		host:    host,
-		session: setupSession(),
+		host: host,
 	}
 }
 
