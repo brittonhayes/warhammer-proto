@@ -11,7 +11,7 @@ require (
 	github.com/diamondburned/arikawa/v3 v3.0.0-rc.2.0.20211020220606-528281b7395e
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.6.0
-	golang.org/x/sys v0.0.0-20210514084401-e8d321eab015 // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	google.golang.org/genproto v0.0.0-20210903162649-d08c68adba83
 	google.golang.org/grpc v1.41.0
 	google.golang.org/protobuf v1.27.1
